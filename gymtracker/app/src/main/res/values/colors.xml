@@ -1,0 +1,10 @@
+<resources>
+    <color name="primary_color">#2196F3</color>
+    <color name="primary_dark">#1976D2</color>
+    <color name="accent_color">#FF5722</color>
+    <color name="light_gray">#F5F5F5</color>
+    <color name="goal_color">#4CAF50</color>
+    <color name="activity_color">#FF9800</color>
+    <color name="diary_color">#9C27B0</color>
+    <color name="delete_color">#F44336</color>
+</resources>

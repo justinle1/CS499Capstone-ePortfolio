@@ -1,0 +1,15 @@
+<resources>
+    <string name="app_name">Daily Gym Tracker</string>
+    <string name="login">Login</string>
+    <string name="signup">Sign Up</string>
+    <string name="logout">Logout</string>
+    <string name="username">Username</string>
+    <string name="password">Password</string>
+    <string name="email">Email</string>
+    <string name="add_entry">Add Entry</string>
+    <string name="edit_entry">Edit Entry</string>
+    <string name="delete_entry">Delete Entry</string>
+    <string name="goal">Goal</string>
+    <string name="activity">Activity</string>
+    <string name="diary">Diary</string>
+</resources>
