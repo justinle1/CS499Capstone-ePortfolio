@@ -1,0 +1,31 @@
+{
+    "manifest_version": 3,
+    "name": "Promo Code Manager",
+    "version": "1.0",
+    "description": "Automatically apply and manage promo codes during checkout",
+    "permissions": [
+        "storage",
+        "activeTab",
+        "scripting",
+        "alarms"
+    ],
+    "host_permissions": [
+        "http://*/*",
+        "https://*/*"
+    ],
+    "background": {
+        "service_worker": "background.js"
+    },
+    "content_scripts": [
+        {
+            "matches": [ "<all_urls>" ],
+            "js": [ "content.js" ],
+            "run_at": "document_end",
+            "all_frames": true
+        }
+    ],
+    "action": {
+        "default_popup": "popup.html",
+        "default_title": "Promo Code Manager"
+    }
+}
