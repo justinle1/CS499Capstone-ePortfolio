@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <style>
+    body {
+      width: 350px;
+      padding: 15px;
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      margin: 0;
+    }
+    
+    .header {
+      text-align: center;
+      margin-bottom: 20px;
+      border-bottom: 1px solid #eee;
+      padding-bottom: 10px;
+    }
+    
+    .section {
+      margin-bottom: 20px;
+    }
+    
+    .section h3 {
+      margin: 0 0 10px 0;
+      font-size: 14px;
+      color: #333;
+    }
+    
+    .code-item {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 8px;
+      background: #f5f5f5;
+      border-radius: 4px;
+      margin-bottom: 5px;
+      font-size: 12px;
+    }
+    
+    .code-text {
+      flex: 1;
+      margin-right: 10px;
+      word-break: break-all;
+    }
+    
+    .delete-btn {
+      background: #ff4444;
+      color: white;
+      border: none;
+      border-radius: 3px;
+      padding: 2px 6px;
+      cursor: pointer;
+      font-size: 10px;
+    }
+    
+    .add-form {
+      display: flex;
+      gap: 5px;
+      margin-bottom: 10px;
+    }
+    
+    .add-input {
+      flex: 1;
+      padding: 6px;
+      border: 1px solid #ddd;
+      border-radius: 3px;
+      font-size: 12px;
+    }
+    
+    .add-btn {
+      background: #4CAF50;
+      color: white;
+      border: none;
+      border-radius: 3px;
+      padding: 6px 12px;
+      cursor: pointer;
+      font-size: 12px;
+    }
+    
+    .toggle-container {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 10px;
+      background: #f9f9f9;
+      border-radius: 4px;
+      margin-bottom: 15px;
+    }
+    
+    .toggle {
+      position: relative;
+      width: 40px;
+      height: 20px;
+    }
+    
+    .toggle input {
+      opacity: 0;
+      width: 0;
+      height: 0;
+    }
+    
+    .slider {
+      position: absolute;
+      cursor: pointer;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background-color: #ccc;
+      transition: .4s;
+      border-radius: 20px;
+    }
+    
+    .slider:before {
+      position: absolute;
+      content: "";
+      height: 16px;
+      width: 16px;
+      left: 2px;
+      bottom: 2px;
+      background-color: white;
+      transition: .4s;
+      border-radius: 50%;
+    }
+    
+    input:checked + .slider {
+      background-color: #4CAF50;
+    }
+    
+    input:checked + .slider:before {
+      transform: translateX(20px);
+    }
+    
+    .empty-state {
+      text-align: center;
+      color: #666;
+      font-size: 12px;
+      padding: 20px;
+    }
+    
+    .count-badge {
+      background: #4CAF50;
+      color: white;
+      border-radius: 10px;
+      padding: 2px 8px;
+      font-size: 10px;
+      margin-left: 5px;
+    }
+    
+    .bulk-actions {
+      display: flex;
+      gap: 5px;
+      margin-bottom: 10px;
+    }
+    
+    .bulk-btn {
+      background: #2196F3;
+      color: white;
+      border: none;
+      border-radius: 3px;
+      padding: 4px 8px;
+      cursor: pointer;
+      font-size: 10px;
+      flex: 1;
+    }
+    
+    .bulk-btn.danger {
+      background: #ff4444;
+    }
+    
+    .bulk-textarea {
+      width: 100%;
+      height: 80px;
+      padding: 8px;
+      border: 1px solid #ddd;
+      border-radius: 3px;
+      font-size: 11px;
+      margin-bottom: 10px;
+      resize: vertical;
+    }
+    
+    .bulk-controls {
+      display: flex;
+      gap: 5px;
+      margin-bottom: 10px;
+    }
+    
+    .cancel-btn {
+      background: #666;
+      color: white;
+      border: none;
+      border-radius: 3px;
+      padding: 6px 12px;
+      cursor: pointer;
+      font-size: 12px;
+    }
+    
+    .code-item.used {
+      background: #ffebee;
+      opacity: 0.7;
+    }
+    
+    .code-item .status {
+      font-size: 10px;
+      color: #666;
+      margin-left: 5px;
+    }
+    
+    .code-item .status.used {
+      color: #f44336;
+    }
+    
+    .toggle-used-btn {
+      background: #FF9800;
+      color: white;
+      border: none;
+      border-radius: 3px;
+      padding: 2px 6px;
+      cursor: pointer;
+      font-size: 10px;
+      margin-right: 5px;
+    }
+    
+    .toggle-used-btn.used {
+      background: #4CAF50;
+    }
+    
+    .select-btn {
+      background: #2196F3;
+      color: white;
+      border: none;
+      border-radius: 3px;
+      padding: 2px 6px;
+      cursor: pointer;
+      font-size: 10px;
+      margin-right: 5px;
+    }
+    
+    .select-btn.selected {
+      background: #4CAF50;
+    }
+    
+    .gift-item.selected {
+      border: 2px solid #4CAF50;
+      background: #e8f5e8;
+    }
+  </style>
+</head>
+<body>
+  <div class="header">
+    <h2>Checkout Auto-Fill</h2>
+  </div>
+  
+  <div class="toggle-container">
+    <span>Enable Auto-Fill</span>
+    <label class="toggle">
+      <input type="checkbox" id="enableToggle" checked>
+      <span class="slider"></span>
+    </label>
+  </div>
+  
+  <div class="section">
+    <h3>Gift Cards</h3>
+    <div class="add-form">
+      <input type="text" id="giftInput" class="add-input" placeholder="Gift card number" style="flex: 2;">
+      <input type="text" id="pinInput" class="add-input" placeholder="PIN" style="flex: 1;">
+      <button id="addGift" class="add-btn">Add</button>
+    </div>
+    <div id="giftList"></div>
+  </div>
+  
+  <div class="section">
+    <h3>Promo Codes <span id="promoCount" class="count-badge">0</span></h3>
+    <div class="add-form">
+      <input type="text" id="promoInput" class="add-input" placeholder="Enter promo code">
+      <button id="addPromo" class="add-btn">Add</button>
+    </div>
+    <div class="bulk-actions">
+      <button id="bulkImport" class="bulk-btn">Bulk Import</button>
+      <button id="exportCodes" class="bulk-btn">Export</button>
+      <button id="clearUsed" class="bulk-btn danger">Clear Used</button>
+    </div>
+    <textarea id="bulkInput" class="bulk-textarea" placeholder="Paste multiple promo codes (one per line)" style="display: none;"></textarea>
+    <div class="bulk-controls" style="display: none;">
+      <button id="confirmBulk" class="add-btn">Import All</button>
+      <button id="cancelBulk" class="cancel-btn">Cancel</button>
+    </div>
+    <div id="promoList"></div>
+  </div>
+  
+  <script src="popup.js"></script>
+</body>
+</html>
