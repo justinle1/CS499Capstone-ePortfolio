@@ -18,6 +18,10 @@ I consider myself a strong team player. I practice teamwork and collaboration da
 
 I am also confident in my ability to communicate effectively with stakeholders. I can present ideas, gather feedback, and incorporate improvements into projects. My strengths lie in hands-on learning, innovation, and creative problem-solving.
 
+## Code Review
+You can watch my detailed code review here:  
+👉 [**Code Review**](https://youtu.be/G74a4B6N2dw)
+
 ## First Enhancement: Mobile Gym Diary App
 My first enhancement involved modifying a previous project—an event-tracking mobile app—into a daily gym diary. As someone who visits the gym regularly, I wanted to create a practical app to log workouts and track progress.  
 
